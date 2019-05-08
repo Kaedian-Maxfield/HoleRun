@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     Rigidbody m_rb = null;
     bool canJump = true;
     float timer = 0.0f;
+    RaycastHit hit;
+    Ray ray;
 
     private void Start()
     {
@@ -24,7 +26,11 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            gameObject.transform.Translate(Vector3.right * m_speed, Space.Self);
+            if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10))
+            {
+                gameObject.transform.Translate(Vector3.right * m_speed, Space.Self);
+            }
+            
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
