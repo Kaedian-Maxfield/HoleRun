@@ -9,7 +9,16 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpForce = 5.0f;
     Rigidbody m_rb = null;
     bool canJump = true;
+    bool rightTopCollide = false;
+    bool rightMiddleCollide = false;
+    bool rightBottomCollide = false;
+    bool leftTopCollide = false;
+    bool leftMiddleCollide = false;
+    bool leftBottomCollide = false;
     float timer = 0.0f;
+    float distance = 0.6f;
+    Vector3 top = Vector3.zero;
+    Vector3 bottom = Vector3.zero;
     RaycastHit hit;
     Ray ray;
 
@@ -24,17 +33,28 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        top = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
+        bottom = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f, gameObject.transform.position.z);
+        
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10))
+            rightTopCollide = Physics.Raycast(top, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
+            rightMiddleCollide = Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
+            rightBottomCollide = Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
+            if (!rightTopCollide && !rightMiddleCollide && !rightBottomCollide)
             {
                 gameObject.transform.Translate(Vector3.right * m_speed, Space.Self);
             }
-            
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            gameObject.transform.Translate(Vector3.left * m_speed, Space.Self);
+            leftTopCollide = Physics.Raycast(top, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
+            leftMiddleCollide = Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
+            leftBottomCollide = Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
+            if (!leftTopCollide && !leftMiddleCollide && !leftBottomCollide)
+            {
+                gameObject.transform.Translate(Vector3.left * m_speed, Space.Self);
+            }
         }
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
         {
@@ -53,11 +73,14 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space))
+        if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
         {
-            m_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space))
+            {
+                m_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            canJump = true;
+            timer = m_jumpLength;
         }
-        canJump = true;
-        timer = m_jumpLength;
     }
 }
