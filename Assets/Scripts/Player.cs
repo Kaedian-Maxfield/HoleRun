@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] GameObject m_player = null;
     [SerializeField] Rigidbody m_rb = null;
+    [SerializeField] Animator m_animator = null;
     [SerializeField] float m_speed = 1.0f;
     [SerializeField] float m_jumpLength = 1.0f;
     bool canJump = true;
@@ -20,7 +21,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+ 
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             m_player.transform.Translate(Vector3.right * m_speed, Space.Self);
         }
@@ -30,16 +32,28 @@ public class Player : MonoBehaviour
         }
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
         {
+            m_animator.SetTrigger("Jump");
             m_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
-        { 
+        {
+            m_animator.SetTrigger("Jump");
             m_rb.AddForce(Vector3.up * jumpForce);
             timer -= Time.deltaTime;
         }
         if (timer < 0.0f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             canJump = false;
+        }
+        m_animator.SetFloat("Speed", m_speed);
+        if (m_rb.velocity.y < 0.0f)
+        {
+            m_animator.SetBool("Fall", true);
+        }
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
+        {
+            m_animator.SetBool("Fall", false);
+            m_animator.SetTrigger("Land");
         }
     }
 
