@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         top = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
         bottom = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f, gameObject.transform.position.z);
         
@@ -49,16 +50,11 @@ public class Player : MonoBehaviour
             if (!rightTopCollide && !rightMiddleCollide && !rightBottomCollide)
             {
                 gameObject.transform.Translate(Vector3.right * m_speed, Space.Self);
+                //m_animator.SetTrigger("Run");
             }
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            m_player.transform.Translate(Vector3.left * m_speed, Space.Self);
-        }
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
-        {
-            m_animator.SetTrigger("Jump");
-            m_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             leftTopCollide = Physics.Raycast(top, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
             leftMiddleCollide = Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
             leftBottomCollide = Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
@@ -70,7 +66,7 @@ public class Player : MonoBehaviour
         
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
         {
-            m_animator.SetTrigger("Jump");
+            //m_animator.SetTrigger("Jump");
             m_rb.AddForce(Vector3.up * jumpForce);
             timer -= Time.deltaTime;
         }
@@ -86,21 +82,20 @@ public class Player : MonoBehaviour
         {
             canJump = false;
         }
-        m_animator.SetFloat("Speed", m_speed);
-        if (m_rb.velocity.y < 0.0f)
-        {
-            m_animator.SetBool("Fall", true);
-        }
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Fall") && timer >= 0.0f);
+        m_animator.SetFloat("Speed", m_rb.velocity.x);
+
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Fall") && timer <= 0.0f)
         {
             m_animator.SetBool("Fall", false);
             m_animator.SetTrigger("Land");
-        }
-        if (m_speed > 0.0f)
+        } 
+        else
         {
-            m_animator.SetTrigger("Run");
+            if (m_rb.velocity.y < 0.0f)
+            {
+                m_animator.SetBool("Fall", true);
+            }
         }
-        Debug.Log(m_speed);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -886,6 +886,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1663566582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 5cd0541ad35725f44a69cf3c102dac2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069249637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1837067330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -897,6 +903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ybot
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5cd0541ad35725f44a69cf3c102dac2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5cd0541ad35725f44a69cf3c102dac2a,
         type: 3}
@@ -1039,7 +1050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1938828720
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1068,7 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e372838f23d8882498dda629040e4826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player: {fileID: 1938828719}
+  m_player: {fileID: 1663566582}
   m_rb: {fileID: 1938828720}
   m_animator: {fileID: 1938828724}
   m_speed: 10
@@ -1111,7 +1122,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938828719}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5cd0541ad35725f44a69cf3c102dac2a, type: 3}
   m_Controller: {fileID: 9100000, guid: 18375cc1bf6e66946a0212f8d59ce6e5, type: 2}
   m_CullingMode: 1

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5cd0541ad35725f44a69cf3c102dac2a
+guid: 73e061d982b12974cb7fe5c1a14242fd
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
@@ -35,18 +35,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Jogging
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -98,11 +98,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 89d65369c0f9a8e48af80bcc77aaad64
-  - 73e061d982b12974cb7fe5c1a14242fd
-  - 3bdfd6065ae150347a4acabd261f717f
-  - 641e6ed25ed7ad846855c0d87f7ceaa0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
