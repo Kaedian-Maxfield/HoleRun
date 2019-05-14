@@ -828,8 +828,9 @@ GameObject:
   - component: {fileID: 1150063497}
   - component: {fileID: 1150063496}
   - component: {fileID: 1150063495}
+  - component: {fileID: 1150063498}
   - component: {fileID: 1150063494}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrier
   m_TagString: Barrier
   m_Icon: {fileID: 0}
@@ -908,6 +909,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150063498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150063493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62a2553ece5f404589b2bd0e7badd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFallen: 0
+  m_player: {fileID: 1629626746}
 --- !u!1 &1222485741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,6 +1326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFallen: 0
+  m_player: {fileID: 1629626746}
 --- !u!1001 &1506087495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1436,8 +1452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scoreText: {fileID: 541761394}
-  m_fallArea: {fileID: 1468997930}
-  m_player: {fileID: 1629626746}
+  m_pausePanel: {fileID: 0}
+  m_gameOverPanel: {fileID: 0}
 --- !u!65 &1540214287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1701,16 +1717,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 630241933342067310, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 630241933342067304, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b5e63dd5ad75c5a4f837d5f041aa59e6, type: 2}
+    - target: {fileID: 630241933342067310, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b234a566b72469d4ca07e9f5ecdd6cd3, type: 3}
 --- !u!1 &1715625439
