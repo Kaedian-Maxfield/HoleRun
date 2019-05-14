@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 630241933342067307}
   - component: {fileID: 630241933342067304}
   - component: {fileID: 630241933342067305}
-  - component: {fileID: 630241933342067310}
+  - component: {fileID: 4308587466624840780}
   m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58099bd425d1cb45ba65306841e527a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rb: {fileID: 630241933342067310}
+  m_rb: {fileID: 4308587466624840780}
   m_speed: 2
 --- !u!33 &630241933342067307
 MeshFilter:
@@ -107,7 +107,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &630241933342067310
+--- !u!54 &4308587466624840780
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
