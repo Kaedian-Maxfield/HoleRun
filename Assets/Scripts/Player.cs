@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
         gameObject.AddComponent<Rigidbody>();
         m_rb = gameObject.GetComponent<Rigidbody>();
         m_rb.constraints = RigidbodyConstraints.FreezeRotation;
+        timer = m_jumpLength;
         
         canJump = true;
     }
@@ -58,30 +59,36 @@ public class Player : MonoBehaviour
                 gameObject.transform.Translate(Vector3.left * m_speed, Space.Self);
             }
         }
-        
+
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
-        { 
+        {
+            Debug.Log("Jump");
             m_rb.AddForce(Vector3.up * jumpForce);
             timer -= Time.deltaTime;
         }
-        if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
-        {
-            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
-            {
-                m_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
-            canJump = true;
-        }
-            if (timer < 0.0f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
+        if (timer < 0.0f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             canJump = false;
         }
+        if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
+        {
+            Debug.Log("onPlatform");
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
+            {
+                Debug.Log("jump");
+                m_rb.AddForce(Vector3.up * (jumpForce + (m_rb.velocity.y * -1.0f)), ForceMode.Impulse);
+            }
+            canJump = true;
+            timer = m_jumpLength;
+        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
         {
+            Debug.Log("collide");
             canJump = true;
             timer = m_jumpLength;
         }
