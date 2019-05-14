@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] float m_speed = 15.0f;
     [SerializeField] float m_jumpLength = 1.0f;
     [SerializeField] float jumpForce = 5.0f;
-    Rigidbody m_rb = null;
+    //Rigidbody m_rb = null;
     bool canJump = true;
     bool rightTopCollide = false;
     bool rightMiddleCollide = false;
@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
         top = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
         bottom = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f, gameObject.transform.position.z);
         
@@ -83,7 +82,7 @@ public class Player : MonoBehaviour
             }
             canJump = true;
         }
-            if (timer < 0.0f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
+        if (timer < 0.0f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             canJump = false;
         }
@@ -92,11 +91,16 @@ public class Player : MonoBehaviour
         {
             m_animator.SetBool("Fall", true);
         }
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Fall") && timer >= 0.0f);
         {
             m_animator.SetBool("Fall", false);
             m_animator.SetTrigger("Land");
         }
+        if (m_speed > 0.0f)
+        {
+            m_animator.SetTrigger("Run");
+        }
+        Debug.Log(m_speed);
     }
 
     private void OnCollisionEnter(Collision collision)
