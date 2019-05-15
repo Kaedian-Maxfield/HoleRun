@@ -15,8 +15,7 @@ public class PlatformMovement : MonoBehaviour
 
     private void Start()
     {
-        Rando = Random.Range(0.0f, 1.0f);
-        Debug.Log(Rando);
+        Rando = Random.Range(0.0f, 2.0f);
         if(Rando <= 0.5f)
         {
             rotates = true;
@@ -36,7 +35,7 @@ public class PlatformMovement : MonoBehaviour
                 transform.position -= new Vector3(m_speed, 0.0f, 0.0f) * Time.deltaTime;
                 if (rotates && Time.timeScale != 0.0f) 
                 {
-                    transform.RotateAround(transform.position,new Vector3(0.0f,0.0f,1.0f), 0.3f);
+                    transform.RotateAround(transform.position,new Vector3(0.0f,0.0f,1.0f), 0.1f);
                 }
             }
             if(m_timer <= 0.93f)
