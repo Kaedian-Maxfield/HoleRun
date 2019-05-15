@@ -5,12 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] GameObject m_player = null;
-    [SerializeField] Rigidbody m_rb = null;
     [SerializeField] Animator m_animator = null;
     [SerializeField] float m_speed = 15.0f;
     [SerializeField] float m_jumpLength = 1.0f;
     [SerializeField] float jumpForce = 5.0f;
-    //Rigidbody m_rb = null;
+    Rigidbody m_rb = null;
     bool canJump = true;
     bool rightTopCollide = false;
     bool rightMiddleCollide = false;
@@ -39,7 +38,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
         top = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
         bottom = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f, gameObject.transform.position.z);
         
@@ -51,7 +49,11 @@ public class Player : MonoBehaviour
             if (!rightTopCollide && !rightMiddleCollide && !rightBottomCollide)
             {
                 gameObject.transform.Translate(Vector3.right * m_speed, Space.Self);
-                //m_animator.SetTrigger("Run");
+                if (m_player.transform.rotation.eulerAngles.y == 270.0f)
+                {
+                    Debug.Log("Look R");
+                    m_player.transform.Rotate(0.0f, -180.0f, 0.0f);
+                }
             }
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -62,6 +64,11 @@ public class Player : MonoBehaviour
             if (!leftTopCollide && !leftMiddleCollide && !leftBottomCollide)
             {
                 gameObject.transform.Translate(Vector3.left * m_speed, Space.Self);
+                if(m_player.transform.rotation.eulerAngles.y == 90.0f)
+                {
+                    Debug.Log("Look L");
+                    m_player.transform.Rotate(0.0f, 180.0f, 0.0f);
+                }
             }
         }
 
@@ -86,13 +93,9 @@ public class Player : MonoBehaviour
             canJump = true;
             timer = m_jumpLength;
         }
-        if (timer < 0.0f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            canJump = false;
-        }
         m_animator.SetFloat("Speed", m_rb.velocity.x);
 
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Fall") && timer <= 0.0f)
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Fall") && timer > 0.0f && m_rb.velocity.y >= -0.1f)
         {
             m_animator.SetBool("Fall", false);
             m_animator.SetTrigger("Land");
