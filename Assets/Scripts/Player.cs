@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
         }
         if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
         {
-            Debug.Log("onPlatform");
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
             {
                 Debug.Log("jump");
@@ -113,7 +112,6 @@ public class Player : MonoBehaviour
     {
         if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
         {
-            Debug.Log("collide");
             canJump = true;
             timer = m_jumpLength;
         }
