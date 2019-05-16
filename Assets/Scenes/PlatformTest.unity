@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f030c9cc92e625a4cbb3d0d14a942e25, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e79d4b75352bd7e4cbf99a931f41e639, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -408,6 +408,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1412200779732894210, guid: 98569d35ebe20a047997c732d5f0834c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412200780619916577, guid: 98569d35ebe20a047997c732d5f0834c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412200780619916588, guid: 98569d35ebe20a047997c732d5f0834c,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412200780619916588, guid: 98569d35ebe20a047997c732d5f0834c,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4985973567546050271, guid: 98569d35ebe20a047997c732d5f0834c,
         type: 3}
       propertyPath: m_IsTrigger
@@ -423,30 +443,10 @@ PrefabInstance:
       propertyPath: prewarm
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1412200779732894210, guid: 98569d35ebe20a047997c732d5f0834c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412200780619916577, guid: 98569d35ebe20a047997c732d5f0834c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1412200779732894209, guid: 98569d35ebe20a047997c732d5f0834c,
         type: 3}
       propertyPath: prewarm
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412200780619916588, guid: 98569d35ebe20a047997c732d5f0834c,
-        type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412200780619916588, guid: 98569d35ebe20a047997c732d5f0834c,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98569d35ebe20a047997c732d5f0834c, type: 3}
@@ -1837,16 +1837,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 630241933342067310, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 630241933342067304, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b5e63dd5ad75c5a4f837d5f041aa59e6, type: 2}
+    - target: {fileID: 630241933342067310, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b234a566b72469d4ca07e9f5ecdd6cd3, type: 3}
 --- !u!1 &1715625439

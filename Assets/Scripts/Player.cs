@@ -63,7 +63,6 @@ public class Player : MonoBehaviour
 
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
         {
-            Debug.Log("Jump");
             m_rb.AddForce(Vector3.up * jumpForce);
             timer -= Time.deltaTime;
         }
@@ -75,7 +74,6 @@ public class Player : MonoBehaviour
         //{
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
             {
-                Debug.Log("jump");
                 m_rb.AddForce(Vector3.up * (jumpForce + (m_rb.velocity.y * -1.0f)), ForceMode.Impulse);
                 timer = m_jumpLength;
             }

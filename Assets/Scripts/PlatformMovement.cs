@@ -10,6 +10,8 @@ public class PlatformMovement : MonoBehaviour
     bool barrier = false;
     float m_timer = 1.0f;
     float m_timerReset = 1.0f;
+    float m_speedTimer = 10.0f;
+    float m_speedResetTimer = 10.0f;
     bool rotates = false;
     float Rando;
 
@@ -24,6 +26,15 @@ public class PlatformMovement : MonoBehaviour
 
     void Update()
     {
+        float dt = Time.deltaTime;
+        m_speedTimer -= dt;
+        Debug.Log(m_speedTimer);
+        if(m_speedTimer <= 0.0f)
+        {
+            m_speedTimer = m_speedResetTimer;
+            m_speed += 0.25f;
+        }
+
         if (!barrier)
         {
             if (transform.localScale.x <= 0.0005f)
@@ -32,7 +43,7 @@ public class PlatformMovement : MonoBehaviour
             }
             else
             {
-                transform.position -= new Vector3(m_speed, 0.0f, 0.0f) * Time.deltaTime;
+                transform.position -= new Vector3(m_speed, 0.0f, 0.0f) * dt;
                 if (rotates && Time.timeScale != 0.0f)
                 {
                     transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 1.0f), 0.1f);
@@ -64,11 +75,12 @@ public class PlatformMovement : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        float dt = Time.deltaTime;
         if (other.tag == "Barrier")
         {
-            transform.position -= new Vector3(m_speed / 2.0f, 0.0f, 0.0f) * Time.deltaTime;
+            transform.position -= new Vector3(m_speed / 2.0f, 0.0f, 0.0f) * dt;
             transform.localScale -= new Vector3(0.5f, 0.0f, 0.0f);
-            m_timer -= Time.deltaTime;
+            m_timer -= dt;
         }
     }
 
