@@ -38,7 +38,7 @@ public class Game : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("UIScene");
+        SceneManager.LoadScene("PlatformTest");
     }
 
     public void QuitGame()
