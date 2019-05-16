@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] float m_jumpLength = 1.0f;
     [SerializeField] float jumpForce = 5.0f;
     Rigidbody m_rb = null;
-    bool canJump = true;
+    public bool canJump = true;
     bool rightTopCollide = false;
     bool rightMiddleCollide = false;
     bool rightBottomCollide = false;
@@ -70,9 +70,8 @@ public class Player : MonoBehaviour
         {
             canJump = false;
         }
-        if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
-        {
-            Debug.Log("onPlatform");
+        //if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
+        //{
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
             {
                 Debug.Log("jump");
@@ -80,17 +79,33 @@ public class Player : MonoBehaviour
             }
             canJump = true;
             timer = m_jumpLength;
-        }
+        //}
         
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
-        {
-            Debug.Log("collide");
+        // (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
+        //{
+            ///Debug.Log(hit.transform.gameObject.name);
             canJump = true;
             timer = m_jumpLength;
+        //}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            canJump = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Platform")
+        {
+            canJump = false;
         }
     }
 }
