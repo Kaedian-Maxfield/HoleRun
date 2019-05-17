@@ -15,7 +15,6 @@ public class BlackHole : MonoBehaviour
         {
             Vector3 direction = m_player.transform.position - new Vector3(transform.position.x, 0.0f, 0.0f);
             float distance = m_player.transform.position.magnitude;
-            Debug.Log(2/distance * 10);
 
             if(m_player.transform.position.x < this.transform.position.x)
             {

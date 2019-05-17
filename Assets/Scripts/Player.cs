@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] float m_jumpLength = 1.0f;
     [SerializeField] float jumpForce = 5.0f;
     Rigidbody m_rb = null;
-    bool canJump = true;
+    public bool canJump = true;
+    bool onTrigger = false;
     bool rightTopCollide = false;
     bool rightMiddleCollide = false;
     bool rightBottomCollide = false;
@@ -43,11 +44,11 @@ public class Player : MonoBehaviour
         
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            rightTopCollide = Physics.Raycast(top, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
-            rightMiddleCollide = Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
-            rightBottomCollide = Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
-            if (!rightTopCollide && !rightMiddleCollide && !rightBottomCollide)
-            {
+            //rightTopCollide = Physics.Raycast(top, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
+           // rightMiddleCollide = Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
+            //rightBottomCollide = Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.right), out hit, distance);
+            //if (!rightTopCollide && !rightMiddleCollide && !rightBottomCollide)
+            //{
                 gameObject.transform.Translate(Vector3.right * m_speed, Space.Self);
                 if (m_player.transform.rotation.eulerAngles.y == 270.0f)
                 {
@@ -55,14 +56,15 @@ public class Player : MonoBehaviour
                     m_player.transform.Rotate(0.0f, -180.0f, 0.0f);
                 }
             }
+           // }
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            leftTopCollide = Physics.Raycast(top, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
-            leftMiddleCollide = Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
-            leftBottomCollide = Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
-            if (!leftTopCollide && !leftMiddleCollide && !leftBottomCollide)
-            {
+            //leftTopCollide = Physics.Raycast(top, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
+            //leftMiddleCollide = Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
+            //leftBottomCollide = Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
+            //if (!leftTopCollide && !leftMiddleCollide && !leftBottomCollide)
+            //{
                 gameObject.transform.Translate(Vector3.left * m_speed, Space.Self);
                 if(m_player.transform.rotation.eulerAngles.y == 90.0f)
                 {
@@ -78,21 +80,28 @@ public class Player : MonoBehaviour
         //    m_rb.AddForce(Vector3.up * jumpForce);
         //    timer -= Time.deltaTime;
         //}
+           //}
+        }
+
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
+        {
+            m_rb.AddForce(Vector3.up * jumpForce);
+            timer -= Time.deltaTime;
+        }
         if (timer < 0.0f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             canJump = false;
         }
-        
-        if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
-        {
+        //if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
+        //{
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
             {
-                Debug.Log("jump");
                 m_rb.AddForce(Vector3.up * (jumpForce + (m_rb.velocity.y * -1.0f)), ForceMode.Impulse);
+                timer = m_jumpLength;
             }
-            canJump = true;
-            timer = m_jumpLength;
-        }
+        //     canJump = true;
+        //     timer = m_jumpLength;
+        // }
 
         m_animator.SetFloat("Speed", m_rb.velocity.x);
 
@@ -113,14 +122,62 @@ public class Player : MonoBehaviour
                 m_animator.SetBool("Fall", true);
             }
         }
+            //canJump = true;
+        //}
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
-        {
+        // (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
+        //{
+            ///Debug.Log(hit.transform.gameObject.name);
             canJump = true;
             timer = m_jumpLength;
+        //}
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            if (!onTrigger)
+            {
+            canJump = true;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            canJump = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            canJump = false;
+            onTrigger = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Platform")
+        {
+            canJump = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Platform")
+        {
+            onTrigger = false;
         }
     }
 }

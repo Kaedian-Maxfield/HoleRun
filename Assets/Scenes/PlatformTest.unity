@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e79d4b75352bd7e4cbf99a931f41e639, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 51814689}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,18 +936,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 999da746ad59ea34687ac9667607a1dc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b234a566b72469d4ca07e9f5ecdd6cd3, type: 3}
---- !u!114 &1067649236 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4671206604377794363, guid: 98569d35ebe20a047997c732d5f0834c,
-    type: 3}
-  m_PrefabInstance: {fileID: 430255325}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2cbf6d2bed9fe846870ad180e2b4e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1150063493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,8 +1022,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150063493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
-  m_LocalScale: {x: 2, y: 9, z: 1}
+  m_LocalPosition: {x: -1, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 9, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1380,7 +1368,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468997930}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1577,7 +1565,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540214284}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75a8382f3eeaa4348850e1c1de92f67b, type: 3}
   m_Name: 
@@ -1701,8 +1689,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 15
   m_jumpLength: 1
-  jumpForce: 5
-  m_blackHole: {fileID: 1067649236}
+  jumpForce: 8
+  canJump: 1
 --- !u!136 &1629626748
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1849,16 +1837,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 630241933342067310, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 630241933342067304, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b5e63dd5ad75c5a4f837d5f041aa59e6, type: 2}
+    - target: {fileID: 630241933342067310, guid: b234a566b72469d4ca07e9f5ecdd6cd3,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b234a566b72469d4ca07e9f5ecdd6cd3, type: 3}
 --- !u!1 &1715625439
