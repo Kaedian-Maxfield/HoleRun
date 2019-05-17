@@ -72,16 +72,17 @@ public class Player : MonoBehaviour
             }
         }
 
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
-        {
-            Debug.Log("Jump");
-            m_rb.AddForce(Vector3.up * jumpForce);
-            timer -= Time.deltaTime;
-        }
+        //if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
+        //{
+        //    Debug.Log("Jump");
+        //    m_rb.AddForce(Vector3.up * jumpForce);
+        //    timer -= Time.deltaTime;
+        //}
         if (timer < 0.0f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             canJump = false;
         }
+        
         if (Physics.Raycast(bottom, gameObject.transform.TransformDirection(Vector3.down), out hit, distance))
         {
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
@@ -92,8 +93,14 @@ public class Player : MonoBehaviour
             canJump = true;
             timer = m_jumpLength;
         }
+
         m_animator.SetFloat("Speed", m_rb.velocity.x);
 
+        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        {
+            m_animator.SetBool("Jump", false);
+            m_animator.SetTrigger("Fall");
+        }
         if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Fall") && timer > 0.0f && m_rb.velocity.y >= -0.1f)
         {
             m_animator.SetBool("Fall", false);

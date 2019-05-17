@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5b5de035b56549140898eddf5f3d96a5
+guid: 7a924586688d9684cb9caf51d7746b9b
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Falling To Landing
+      name: Jumping
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 7
-      lastFrame: 32
+      firstFrame: 0
+      lastFrame: 57
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
