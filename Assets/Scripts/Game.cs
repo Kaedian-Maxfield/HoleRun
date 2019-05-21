@@ -28,6 +28,8 @@ public class Game : MonoBehaviour
             m_timer += 0.1f;
         }
         m_scoreText.text = "Score: " + m_score.ToString("D5");
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (player.lose) m_gameOverPanel.SetActive(true);
     }
 
     public void PauseGame()
