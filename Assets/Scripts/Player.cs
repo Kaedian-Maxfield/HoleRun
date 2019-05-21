@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
                 }
             }
            // }
-        }
+        
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             //leftTopCollide = Physics.Raycast(top, gameObject.transform.TransformDirection(Vector3.left), out hit, distance);
@@ -70,8 +70,7 @@ public class Player : MonoBehaviour
                 {
                     Debug.Log("Look L");
                     m_player.transform.Rotate(0.0f, 180.0f, 0.0f);
-                }
-            }
+                }            
         }
 
         //if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
@@ -81,7 +80,7 @@ public class Player : MonoBehaviour
         //    timer -= Time.deltaTime;
         //}
            //}
-        }
+        
 
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) && canJump && timer > 0.0f)
         {

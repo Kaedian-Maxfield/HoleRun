@@ -28,7 +28,6 @@ public class PlatformMovement : MonoBehaviour
     {
         float dt = Time.deltaTime;
         m_speedTimer -= dt;
-        Debug.Log(m_speedTimer);
         if(m_speedTimer <= 0.0f)
         {
             m_speedTimer = m_speedResetTimer;
