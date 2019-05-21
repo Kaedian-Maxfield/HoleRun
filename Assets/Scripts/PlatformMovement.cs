@@ -79,6 +79,7 @@ public class PlatformMovement : MonoBehaviour
         {
             transform.position -= new Vector3(m_speed / 2.0f, 0.0f, 0.0f) * dt;
             transform.localScale -= new Vector3(0.5f, 0.0f, 0.0f);
+            if (transform.localScale.x <= 0.0f) transform.localScale = new Vector3(0.0f,transform.localScale.y,transform.localScale.z);
             m_timer -= dt;
         }
     }
