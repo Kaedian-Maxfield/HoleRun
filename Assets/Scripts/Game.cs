@@ -11,12 +11,15 @@ public class Game : MonoBehaviour
     [SerializeField] GameObject m_pausePanel = null;
     [SerializeField] GameObject m_gameOverPanel = null;
 
+    Player player = null;
+
     private int m_score = 0;
     private float m_timer = 0.1f;
 
     private void Start()
     {
         Time.timeScale = 1.0f;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -27,13 +30,15 @@ public class Game : MonoBehaviour
             m_score++;
             m_timer += 0.1f;
         }
-        m_scoreText.text = "Score: " + m_score.ToString("D5");
+        m_scoreText.text = "Score: " + m_score.ToString("D5");      
+        if (player.lose) m_gameOverPanel.SetActive(true);
     }
 
     public void PauseGame()
     {
         Time.timeScale = (Time.timeScale == 0.0f) ? 1.0f : 0.0f;
         m_pausePanel.SetActive(!m_pausePanel.activeSelf);
+        player.GetComponent<Player>().enabled = !player.GetComponent<Player>().enabled;
     }
 
     public void RestartGame()

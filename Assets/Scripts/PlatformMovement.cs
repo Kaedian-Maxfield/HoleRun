@@ -12,8 +12,8 @@ public class PlatformMovement : MonoBehaviour
     float m_timerReset = 1.0f;
     float m_speedTimer = 10.0f;
     float m_speedResetTimer = 10.0f;
-    bool rotates = false;
-    float Rando;
+    [SerializeField] bool rotates = false;
+    public float Rando;
 
     private void Start()
     {
@@ -45,7 +45,12 @@ public class PlatformMovement : MonoBehaviour
                 transform.position -= new Vector3(m_speed, 0.0f, 0.0f) * dt;
                 if (rotates && Time.timeScale != 0.0f)
                 {
-                    transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 1.0f), 0.1f);
+                 if (Rando > 0.4f && Rando <= 0.5f ) transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 1.0f),   0.1f);
+                 if (Rando > 0.3f && Rando <= 0.4f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 2.0f),  0.1f);
+                 if (Rando > 0.2f && Rando <= 0.3f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, -1.0f), 0.1f);
+                 if (Rando > 0.1f && Rando <= 0.2f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, -2.0f), 0.1f);
+                 if (Rando > -0.1f && Rando <= 0.1f ) transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 0.5f),  0.1f);
+
                 }
             }
         }

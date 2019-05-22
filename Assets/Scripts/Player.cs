@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpForce = 5.0f;
     Rigidbody m_rb = null;
     public bool canJump = true;
+    public bool lose = false;
     bool onTrigger = false;
     bool rightTopCollide = false;
     bool rightMiddleCollide = false;
