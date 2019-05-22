@@ -45,11 +45,11 @@ public class PlatformMovement : MonoBehaviour
                 transform.position -= new Vector3(m_speed, 0.0f, 0.0f) * dt;
                 if (rotates && Time.timeScale != 0.0f)
                 {
-                 if (Rando > 0.4f && Rando <= 0.5f ) transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 1.0f),   0.1f);
-                 if (Rando > 0.3f && Rando <= 0.4f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 2.0f),  0.1f);
-                 if (Rando > 0.2f && Rando <= 0.3f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, -1.0f), 0.1f);
-                 if (Rando > 0.1f && Rando <= 0.2f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, -2.0f), 0.1f);
-                 if (Rando > -0.1f && Rando <= 0.1f ) transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 0.5f),  0.1f);
+                 if (Rando > 0.4f && Rando <= 0.5f ) transform.RotateAround(transform.position,  new Vector3(0.0f, 0.0f,  1.0f),   0.1f);
+                 if (Rando > 0.3f && Rando <= 0.4f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 1.0f),   -0.2f);
+                 if (Rando > 0.2f && Rando <= 0.3f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 1.0f),   -0.1f);
+                 if (Rando > 0.1f && Rando <= 0.2f )  transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 1.0f),   0.2f);
+                 if (Rando > -0.1f && Rando <= 0.1f ) transform.RotateAround(transform.position, new Vector3(0.0f, 0.0f, 1.0f),   0.05f);
 
                 }
             }
