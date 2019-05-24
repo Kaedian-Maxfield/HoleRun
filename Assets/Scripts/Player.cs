@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] GameObject m_player = null;
     [SerializeField] Animator m_animator = null;
+    [SerializeField] AudioSource m_audio = null;
     [SerializeField] float m_speed = 15.0f;
     [SerializeField] float m_jumpLength = 1.0f;
     [SerializeField] float jumpForce = 5.0f;
@@ -96,6 +97,7 @@ public class Player : MonoBehaviour
         //{
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && canJump && timer > 0.0f)
             {
+                m_audio.Play();
                 m_rb.AddForce(Vector3.up * (jumpForce + (m_rb.velocity.y * -1.0f)), ForceMode.Impulse);
                 timer = m_jumpLength;
             }

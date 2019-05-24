@@ -67,10 +67,12 @@ public class Game : MonoBehaviour
 
     public void QuitGame()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        //#if UNITY_EDITOR
+        //        UnityEditor.EditorApplication.isPlaying = false;
+        //#else
+        //        Application.Quit();
+        //#endif
+
+        SceneManager.LoadScene("Main Menu");
     }
 }
